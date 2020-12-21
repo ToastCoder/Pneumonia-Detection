@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 
 # DATA PREPROCESSING
-
 dir_train = './dataset/train'
 datagen_train = tf.keras.preprocessing.image.ImageDataGenerator(rescale = 1./255.)
 train_data = datagen_train.flow_from_directory(dir_train,
@@ -45,6 +44,6 @@ plt.legend(['train', 'validation'], loc='upper left')
 plt.show()
 
 # SAVING THE MODEL
-tf.keras.models.save_model('./model/pneumonia-model')
+tf.keras.models.save_model(model,'./model/pneumonia-model')
 
 
