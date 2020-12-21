@@ -33,6 +33,18 @@ model.add(tf.keras.layers.Dense(1, activation = 'sigmoid'))
 
 # FITTING AND TRAINING THE MODEL
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-model.fit(train_data, validation_data = test_data, epochs = 10)
+history = model.fit(train_data, validation_data = test_data, epochs = 10)
+
+# VISUALIZING TRAINING LOSS AND VALIDATION LOSS
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epochs')
+plt.legend(['train', 'validation'], loc='upper left')
+plt.show()
+
+# SAVING THE MODEL
+tf.keras.models.save_model('./model/pneumonia-model')
 
 
