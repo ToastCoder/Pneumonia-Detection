@@ -65,14 +65,27 @@ callback = Callback()
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 history = model.fit(train_data, validation_data = test_data, epochs = 20,callbacks = [callback])
 
-# VISUALIZING TRAINING LOSS AND VALIDATION LOSS
+# PLOTTING THE GRAPH FOR TRAIN-LOSS AND VALIDATION-LOSS
+plt.figure(0)
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
-plt.title('model loss')
-plt.ylabel('loss')
-plt.xlabel('epochs')
-plt.legend(['train', 'validation'], loc='upper left')
+plt.title('Loss Graph')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train Loss', 'Validation Loss'], loc='upper left')
 plt.show()
+plt.savefig('graphs/loss_graph.png')
+
+# PLOTTING THE GRAPH FOR TRAIN-ACCURACY AND VALIDATION-ACCURACY
+plt.figure(1)
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('Accuracy Graph')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Train Accuracy', 'Validation Accuracy'], loc='upper left')
+plt.show()
+plt.savefig('graphs/acc_graph.png')
 
 # SAVING THE MODEL
 tf.keras.models.save_model(model,MODEL_PATH)
