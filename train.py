@@ -51,11 +51,19 @@ def pneumoniaModel():
     model.add(tf.keras.layers.Dense(1, activation = 'sigmoid'))
     return model
 
+# CALLBACK CLASS
+class Callback(tf.keras.callbacks.Callback): 
+    def on_epoch_end(self, epoch, logs={}): 
+        if(logs.get('accuracy') > ACC_THRESHOLD):   
+            print("Reached Threshold Accuracy, Stopping Training.")   
+            self.model.stop_training = True
+
 model = pneumoniaModel()
+callback = Callback()
 
 # FITTING AND TRAINING THE MODEL
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-history = model.fit(train_data, validation_data = test_data, epochs = 10)
+history = model.fit(train_data, validation_data = test_data, epochs = 10,callbacks = [callback])
 
 # VISUALIZING TRAINING LOSS AND VALIDATION LOSS
 plt.plot(history.history['loss'])
