@@ -63,7 +63,7 @@ callback = Callback()
 
 # FITTING AND TRAINING THE MODEL
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-history = model.fit(train_data, validation_data = test_data, epochs = 10,callbacks = [callback])
+history = model.fit(train_data, validation_data = test_data, epochs = 20,callbacks = [callback])
 
 # VISUALIZING TRAINING LOSS AND VALIDATION LOSS
 plt.plot(history.history['loss'])
