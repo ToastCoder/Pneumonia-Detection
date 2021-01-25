@@ -13,7 +13,11 @@
 #-------------------------------------------------------------------------------------------------------------------------------
 
 # IMPORTING REQUIRED LIBRARIES
+import subprocess
 import requests
+
+subprocess.Popen('cd ..', shell = True)
+subprocess.Popen('mkdir dataset', shell = True)
 
 def getFromGoogleDrive(id, destination):
     URL = "https://drive.google.com/u/0/uc?id=1ui5gZWlEVry4e8TTLeywkaTuv6EcuKto&export=download"
