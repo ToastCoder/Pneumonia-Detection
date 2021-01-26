@@ -51,8 +51,8 @@ if __name__ == "__main__":
         os.system('pip3 install -r requirements.txt')
 
     if (args.dataset.lower() == 'cloud'):
-        os.system('python3 src/get_ds.py')
-        os.system('python3 src/check_ds.py')
+        os.system('. src/get_ds.sh')
+        os.system('. src/check_ds.sh')
 
     if (args.dataset.lower() == 'local'):
         os.system('python3 src/check_ds.py')
