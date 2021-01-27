@@ -16,6 +16,7 @@
 import os
 import argparse
 
+
 # FUNCTION TO CONVERT STR INPUT TO BOOL
 def strBool(v):
     if isinstance(v, bool):
@@ -30,10 +31,27 @@ def strBool(v):
 # PARSING FUNCTION
 def parse():
     parser = argparse.ArgumentParser(description = 'Command Line Interface for Pneumonia Detection.')
-    parser.add_argument('-ds','--dataset',type = str, help = 'Argument taken for mentioning dataset source.', default = "local")
-    parser.add_argument('-tr','--train', type = strBool, help = 'Argument taken for training model.', default = "False")
-    parser.add_argument('-req','--install_requirements', type = strBool, help = 'Argument taken for installing requirements', default = False)
-    parser.add_argument('-t','--test', type = strBool, help = 'Argument for testing with custom input',required = True)
+
+    parser.add_argument('-ds','--dataset',
+                        type = str, 
+                        help = 'Argument taken for mentioning dataset source.', 
+                        default = "local")
+
+    parser.add_argument('-tr','--train', 
+                        type = strBool, 
+                        help = 'Argument taken for training model.', 
+                        default = "False")
+
+    parser.add_argument('-req','--install_requirements', 
+                        type = strBool, 
+                        help = 'Argument taken for installing requirements', 
+                        default = False)
+
+    parser.add_argument('-t','--test', 
+                        type = strBool, 
+                        help = 'Argument for testing with custom input',
+                        required = True)
+
     args = parser.parse_args()
     return args
 
@@ -43,6 +61,7 @@ if __name__ == "__main__":
     # DISABLING TENSORFLOW DEBUGGING INFORMATION
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
     print("TensorFlow Debugging Information is hidden.")
+    
 
     args = parse()
 
@@ -55,7 +74,7 @@ if __name__ == "__main__":
         os.system('. src/check_ds.sh')
 
     if (args.dataset.lower() == 'local'):
-        os.system('python3 src/check_ds.py')
+        os.system('. src/check_ds.sh')
 
     if (args.train):
         os.system('python3 src/train.py')
