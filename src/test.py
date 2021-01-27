@@ -7,6 +7,7 @@
 # TOPICS: Binary Classification, Deep Learning, TensorFlow, Convolutional Neural Networks
 
 # IMPORTING REQUIRED MODULES
+import os
 import numpy as np
 import tensorflow as tf
 
@@ -18,7 +19,7 @@ data_dir = './samples/'
 images = []
 for img in os.listdir(data_dir):
     img = os.path.join(data_dir, img)
-    img = tf.keras.preprocessing.image.load_img(img, target_size=(200, 200), grayscale = True)
+    img = tf.keras.preprocessing.image.load_img(img, target_size=(150, 150), grayscale = True)
     img = tf.keras.preprocessing.image.img_to_array(img)
     img = np.expand_dims(img, axis=0)
     images.append(img)

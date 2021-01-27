@@ -79,7 +79,7 @@ model.summary()
 
 # FITTING AND TRAINING THE MODEL
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-history = model.fit(train_data, validation_data = test_data, epochs = 20,callbacks = [callback])
+history = model.fit(train_data, validation_data = test_data, epochs = 20,callbacks = [callback],batch_size = 10)
 
 # PLOTTING THE GRAPH FOR TRAIN-LOSS AND VALIDATION-LOSS
 plt.figure(0)
