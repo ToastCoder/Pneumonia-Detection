@@ -6,11 +6,6 @@
 
 # TOPICS: Binary Classification, Deep Learning, TensorFlow, Convolutional Neural Networks
 
-# DISABLE TF DEBUGGING INFORMATION
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-print("TensorFlow Debugging Information is hidden.")
-
 # IMPORTING REQUIRED MODULES
 import numpy as np
 import tensorflow as tf
