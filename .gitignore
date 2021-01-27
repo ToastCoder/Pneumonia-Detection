@@ -1,2 +1,5 @@
 .ipynb_checkpoints/
 test.ipynb
+model/
+dataset/
+.github/
