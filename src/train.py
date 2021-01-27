@@ -9,7 +9,6 @@
 # IMPORTING REQUIRED LIBRARIES
 import os
 import matplotlib.pyplot as plt
-import matplotlib.image as im
 import tensorflow as tf
 
 print(f"TensorFlow version: {tf.__version__}")
