@@ -50,17 +50,31 @@ print('Total pneumonia images on Test set :', len(os.listdir(DIR_TEST_PNEUMONIA)
 # DEFINING NEURAL NETWORK FUNCTION
 def pneumoniaModel():
     model = tf.keras.models.Sequential()
-    model.add(tf.keras.layers.Conv2D(filters = 16, kernel_size = (3,3), activation = 'relu', input_shape = (150,150,1)))
-    model.add(tf.keras.layers.MaxPooling2D(pool_size =(2,2)))
-    model.add(tf.keras.layers.Dropout(rate= 0.25))
+
+    model.add(tf.keras.layers.Conv2D(filters = 32, kernel_size = (3,3), activation = 'relu', input_shape = (150,150,1)))
+    model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.Conv2D(filters = 32, kernel_size = (3,3), activation = 'relu'))
-    model.add(tf.keras.layers.MaxPooling2D(pool_size = (2,2)))
-    model.add(tf.keras.layers.Dropout(rate= 0.25))
+    model.add(tf.keras.layers.BatchNormalization())
+    model.add(tf.keras.layers.MaxPooling2D(pool_size =(2,2)))
+
     model.add(tf.keras.layers.Conv2D(filters = 64, kernel_size = (3,3), activation = 'relu'))
+    model.add(tf.keras.layers.BatchNormalization())
+    model.add(tf.keras.layers.Conv2D(filters = 64, kernel_size = (3,3), activation = 'relu'))
+    model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.MaxPooling2D(pool_size = (2,2)))
-    model.add(tf.keras.layers.Dropout(rate= 0.25))
+
+    model.add(tf.keras.layers.Conv2D(filters = 128, kernel_size = (3,3), activation = 'relu'))
+    model.add(tf.keras.layers.BatchNormalization())
+    model.add(tf.keras.layers.Conv2D(filters = 128, kernel_size = (3,3), activation = 'relu'))
+    model.add(tf.keras.layers.BatchNormalization())
+    model.add(tf.keras.layers.MaxPooling2D(pool_size = (2,2)))
+
     model.add(tf.keras.layers.Flatten())
+
     model.add(tf.keras.layers.Dense(512, activation = 'relu'))
+    model.add(tf.keras.layers.Dropout(rate= 0.25))
+    model.add(tf.keras.layers.Dense(64,activation = 'relu'))
+    model.add(tf.keras.layers.Dropout(rate= 0.25))
     model.add(tf.keras.layers.Dense(1, activation = 'sigmoid'))
     return model
 
@@ -78,7 +92,7 @@ model.summary()
 
 # FITTING AND TRAINING THE MODEL
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-history = model.fit(train_data, validation_data = test_data, epochs = 20,callbacks = [callback],batch_size = 10)
+history = model.fit(train_data, validation_data = test_data, epochs = 30,batch_size = 5)
 
 # PLOTTING THE GRAPH FOR TRAIN-LOSS AND VALIDATION-LOSS
 plt.figure(0)
