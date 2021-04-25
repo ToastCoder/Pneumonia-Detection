@@ -39,7 +39,6 @@ test_data = datagen_test.flow_from_directory(DIR_TEST,
                                                class_mode = 'binary', 
                                                batch_size = 10)
 
-
 # COUNTING NUMBER OF IMAGE SAMPLES 
 print('Total normal images on Train set :', len(os.listdir(DIR_TRAIN_NORMAL)))
 print('Total pneumonia images on Train set :', len(os.listdir(DIR_TRAIN_PNEUMONIA)))
